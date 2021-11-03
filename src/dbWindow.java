@@ -8,6 +8,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import javax.swing.JTable;
+import javax.swing.border.TitledBorder;
 
 public class dbWindow {
 
@@ -17,6 +18,7 @@ public class dbWindow {
 	private JTextField textField_2;
 	private JTable table;
 	private JTable table_1;
+	private JTextField textField_3;
 
 	/**
 	 * Launch the application.
@@ -107,5 +109,28 @@ public class dbWindow {
 		table_1 = new JTable();
 		table_1.setBounds(403, 81, 467, 186);
 		frame.getContentPane().add(table_1);
+		
+		JPanel panel_1 = new JPanel();
+		panel_1.setBorder(new TitledBorder(null, "Search", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		panel_1.setBounds(32, 286, 362, 80);
+		frame.getContentPane().add(panel_1);
+		panel_1.setLayout(null);
+		
+		JLabel lblNewLabel_1_1_2 = new JLabel("Book ID");
+		lblNewLabel_1_1_2.setBounds(17, 28, 76, 27);
+		panel_1.add(lblNewLabel_1_1_2);
+		
+		textField_3 = new JTextField();
+		textField_3.setColumns(10);
+		textField_3.setBounds(105, 28, 226, 26);
+		panel_1.add(textField_3);
+		
+		JButton btnUpdate = new JButton("Update");
+		btnUpdate.setBounds(391, 311, 70, 29);
+		frame.getContentPane().add(btnUpdate);
+		
+		JButton btnDelete = new JButton("Delete");
+		btnDelete.setBounds(391, 338, 70, 29);
+		frame.getContentPane().add(btnDelete);
 	}
 }
