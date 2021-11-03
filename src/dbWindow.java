@@ -1,4 +1,5 @@
 import java.awt.EventQueue;
+import java.sql.*;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -42,6 +43,18 @@ public class dbWindow {
 	public dbWindow() {
 		initialize();
 	}
+	
+	public void Connect ()
+		{
+			try {
+				Class.forName("com.mysql.jdbc.Driver");
+				con = DriverManager.getConnection("jdbc:mysql://localhost/bookshop", "root", " ");
+			}
+			catch (ClassNotFoundException ex)
+			{}
+			catch (SQLException ex)
+			{}
+		}
 
 	/**
 	 * Initialize the contents of the frame.
@@ -58,6 +71,7 @@ public class dbWindow {
 		frame.getContentPane().add(lblNewLabel);
 		
 		JPanel panel = new JPanel();
+		panel.setBorder(new TitledBorder(null, "Registration", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		panel.setToolTipText("");
 		panel.setBounds(26, 81, 368, 152);
 		frame.getContentPane().add(panel);
@@ -107,12 +121,12 @@ public class dbWindow {
 		frame.getContentPane().add(table);
 		
 		table_1 = new JTable();
-		table_1.setBounds(403, 81, 467, 186);
+		table_1.setBounds(406, 82, 467, 186);
 		frame.getContentPane().add(table_1);
 		
 		JPanel panel_1 = new JPanel();
 		panel_1.setBorder(new TitledBorder(null, "Search", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		panel_1.setBounds(32, 286, 362, 80);
+		panel_1.setBounds(26, 286, 368, 80);
 		frame.getContentPane().add(panel_1);
 		panel_1.setLayout(null);
 		
