@@ -130,13 +130,20 @@ public class dbWindow {
 				edition = txtedition.getText();
 				price = txtprice.getText();
 				
-//				try {
-//					
-//				}
-//				catch (ClassNotFoundException ex)
-//				{}
-//				catch (SQLException ex)
-//				{}
+				try {
+					pst = con.prepareStatement("insert into books(name, edition, price)values(?,?,?)");
+					pst.setString(1,  name);
+					pst.setString(2, edition);
+					pst.setString(3, price);
+					pst.executeUpdate();
+					
+					
+					
+				}
+				catch (ClassNotFoundException ex)
+				{}
+				catch (SQLException ex)
+				{}
 				
 			}
 		});
