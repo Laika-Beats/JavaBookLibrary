@@ -3,6 +3,8 @@ import java.sql.*;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.BorderLayout;
 import java.awt.Font;
 import javax.swing.JPanel;
@@ -132,16 +134,17 @@ public class dbWindow {
 				
 				try {
 					pst = con.prepareStatement("insert into books(name, edition, price)values(?,?,?)");
-					pst.setString(1,  name);
+					pst.setString(1,  bookName);
 					pst.setString(2, edition);
 					pst.setString(3, price);
 					pst.executeUpdate();
-					
-					
-					
+					JOptionPane.showMessageDialog(null, "Record added!");
+//					table_load();
+					txtbname.setText("");
+					txtedition.setText("");
+					txtprice.setText("");
+					txtbname.requestFocus();
 				}
-				catch (ClassNotFoundException ex)
-				{}
 				catch (SQLException ex)
 				{}
 				
