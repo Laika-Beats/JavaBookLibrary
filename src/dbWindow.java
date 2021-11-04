@@ -10,16 +10,18 @@ import javax.swing.JTextField;
 import javax.swing.JButton;
 import javax.swing.JTable;
 import javax.swing.border.TitledBorder;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class dbWindow {
 
 	private JFrame frame;
-	private JTextField textField;
-	private JTextField textField_1;
-	private JTextField textField_2;
+	private JTextField txtbname;
+	private JTextField txtedition;
+	private JTextField txtprice;
 	private JTable table;
 	private JTable table_1;
-	private JTextField textField_3;
+	private JTextField txtbid;
 
 	/**
 	 * Launch the application.
@@ -42,13 +44,17 @@ public class dbWindow {
 	 */
 	public dbWindow() {
 		initialize();
+		Connect();
 	}
+	
+	Connection con;
+	PreparedStatement pst;
 	
 	public void Connect ()
 		{
 			try {
 				Class.forName("com.mysql.jdbc.Driver");
-				con = DriverManager.getConnection("jdbc:mysql://localhost/bookshop", "root", " ");
+				con = DriverManager.getConnection("jdbc:mysql://localhost/BookLibrary", "root", " ");
 			}
 			catch (ClassNotFoundException ex)
 			{}
@@ -89,20 +95,20 @@ public class dbWindow {
 		lblNewLabel_1_1_1.setBounds(18, 102, 76, 27);
 		panel.add(lblNewLabel_1_1_1);
 		
-		textField = new JTextField();
-		textField.setBounds(106, 24, 240, 26);
-		panel.add(textField);
-		textField.setColumns(10);
+		txtbname = new JTextField();
+		txtbname.setBounds(106, 24, 240, 26);
+		panel.add(txtbname);
+		txtbname.setColumns(10);
 		
-		textField_1 = new JTextField();
-		textField_1.setColumns(10);
-		textField_1.setBounds(106, 63, 240, 26);
-		panel.add(textField_1);
+		txtedition = new JTextField();
+		txtedition.setColumns(10);
+		txtedition.setBounds(106, 63, 240, 26);
+		panel.add(txtedition);
 		
-		textField_2 = new JTextField();
-		textField_2.setColumns(10);
-		textField_2.setBounds(106, 102, 240, 26);
-		panel.add(textField_2);
+		txtprice = new JTextField();
+		txtprice.setColumns(10);
+		txtprice.setBounds(106, 102, 240, 26);
+		panel.add(txtprice);
 		
 		JButton btnClear = new JButton("Clear");
 		btnClear.setBounds(269, 245, 117, 29);
@@ -113,6 +119,27 @@ public class dbWindow {
 		frame.getContentPane().add(btnExit);
 		
 		JButton btnNewButton = new JButton("Save");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				String bookName;
+				String edition; 
+				String price;
+				
+				bookName = txtbname.getText();
+				edition = txtedition.getText();
+				price = txtprice.getText();
+				
+//				try {
+//					
+//				}
+//				catch (ClassNotFoundException ex)
+//				{}
+//				catch (SQLException ex)
+//				{}
+				
+			}
+		});
 		btnNewButton.setBounds(36, 245, 117, 29);
 		frame.getContentPane().add(btnNewButton);
 		
@@ -134,10 +161,10 @@ public class dbWindow {
 		lblNewLabel_1_1_2.setBounds(17, 28, 76, 27);
 		panel_1.add(lblNewLabel_1_1_2);
 		
-		textField_3 = new JTextField();
-		textField_3.setColumns(10);
-		textField_3.setBounds(105, 28, 226, 26);
-		panel_1.add(textField_3);
+		txtbid = new JTextField();
+		txtbid.setColumns(10);
+		txtbid.setBounds(105, 28, 226, 26);
+		panel_1.add(txtbid);
 		
 		JButton btnUpdate = new JButton("Update");
 		btnUpdate.setBounds(391, 311, 70, 29);
