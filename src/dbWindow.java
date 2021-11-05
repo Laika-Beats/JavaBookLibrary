@@ -231,6 +231,41 @@ public class dbWindow {
 		panel_1.add(txtbid);
 		
 		JButton btnUpdate = new JButton("Update");
+		btnUpdate.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				String bookName;
+				String edition; 
+				String price;
+				String bookId;
+				
+				bookName = txtbname.getText();
+				edition = txtedition.getText();
+				price = txtprice.getText();
+				bookId = txtbid.getText();
+				
+				try {
+					pst = con.prepareStatement("update books set title = ?, edition = ?, price = ? where id = ?");
+					pst.setString(1, bookName);
+					pst.setString(2, edition);
+					pst.setString(3, price);
+					pst.setString(4, bookId);
+					pst.executeUpdate();
+					
+					JOptionPane.showMessageDialog(null, "Record added!");
+					txtbname.setText("");
+					txtedition.setText("");
+					txtprice.setText("");
+					txtbname.requestFocus();
+					table_load();
+				}
+				catch (SQLException ex)
+				{ex.printStackTrace();}
+				
+				
+				
+			}
+		});
 		btnUpdate.setBounds(391, 311, 70, 29);
 		frame.getContentPane().add(btnUpdate);
 		
