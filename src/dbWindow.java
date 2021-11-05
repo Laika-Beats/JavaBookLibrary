@@ -18,6 +18,8 @@ import net.proteanit.sql.DbUtils;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 public class dbWindow {
 
@@ -193,6 +195,37 @@ public class dbWindow {
 		panel_1.add(lblNewLabel_1_1_2);
 		
 		txtbid = new JTextField();
+		txtbid.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyReleased(KeyEvent e) {
+				try {
+					String id = txtbid.getText();
+					
+					pst = con.prepareStatement("select title, edition, price from books where id = ?");
+					pst.setString(1,  id);
+					ResultSet rs = pst.executeQuery();
+					
+					if (rs.next() == true) 
+					{
+						String name = rs.getString(1);
+						String edition = rs.getString(2);
+						String price = rs.getString(3);
+						
+						txtbname.setText(name);
+						txtedition.setText(edition);
+						txtprice.setText(price);
+					}
+					else 
+					{
+						txtbname.setText("");
+						txtedition.setText("");
+						txtprice.setText("");
+					}
+				}
+				catch (SQLException ex)
+				{ex.printStackTrace();}
+			}
+		});
 		txtbid.setColumns(10);
 		txtbid.setBounds(105, 28, 226, 26);
 		panel_1.add(txtbid);
