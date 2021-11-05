@@ -270,6 +270,30 @@ public class dbWindow {
 		frame.getContentPane().add(btnUpdate);
 		
 		JButton btnDelete = new JButton("Delete");
+		btnDelete.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				String bookId;
+				
+				bookId = txtbid.getText();
+				
+				try {
+					pst = con.prepareStatement("delete from books where id = ?");
+					
+					pst.setString(1, bookId);
+					pst.executeUpdate();
+					
+					JOptionPane.showMessageDialog(null, "Record deleted!");
+					txtbname.setText("");
+					txtedition.setText("");
+					txtprice.setText("");
+					txtbname.requestFocus();
+					table_load();
+				}
+				catch (SQLException ex)
+				{ex.printStackTrace();}
+			}
+		});
 		btnDelete.setBounds(391, 338, 70, 29);
 		frame.getContentPane().add(btnDelete);
 	}
