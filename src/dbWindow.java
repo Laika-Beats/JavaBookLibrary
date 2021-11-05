@@ -1,17 +1,21 @@
 import java.awt.EventQueue;
 import java.sql.*;
 
+
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
-import java.awt.BorderLayout;
+//import java.awt.BorderLayout;
 import java.awt.Font;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import javax.swing.JTable;
 import javax.swing.border.TitledBorder;
+
+import net.proteanit.sql.DbUtils;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
@@ -24,6 +28,7 @@ public class dbWindow {
 	private JTable table;
 	private JTable table_1;
 	private JTextField txtbid;
+	
 
 	/**
 	 * Launch the application.
@@ -47,22 +52,38 @@ public class dbWindow {
 	public dbWindow() {
 		initialize();
 		Connect();
+		table_load();
 	}
 	
 	Connection con;
 	PreparedStatement pst;
+	ResultSet rs;
 	
-	public void Connect ()
+	
+	
+	public void Connect()
 		{
 			try {
-				Class.forName("com.mysql.jdbc.Driver");
-				con = DriverManager.getConnection("jdbc:mysql://localhost/BookLibrary", "root", " ");
-			}
-			catch (ClassNotFoundException ex)
-			{}
+			 con = DriverManager.getConnection("jdbc:mysql://localhost:8889/demo", "root", "root");
+			} 
 			catch (SQLException ex)
-			{}
+			{ex.printStackTrace();}
 		}
+	
+	
+	// Loads saved database info in to application's table
+	public void table_load() {
+		try {
+			pst = con.prepareStatement("select * from books");
+			rs = pst.executeQuery();
+			table_1.setModel(DbUtils.resultSetToTableModel(rs));
+			
+		}
+		catch (SQLException ex) {
+			ex.printStackTrace();
+		}
+	}
+	
 
 	/**
 	 * Initialize the contents of the frame.
@@ -133,20 +154,20 @@ public class dbWindow {
 				price = txtprice.getText();
 				
 				try {
-					pst = con.prepareStatement("insert into books(name, edition, price)values(?,?,?)");
-					pst.setString(1,  bookName);
+					pst = con.prepareStatement("insert into books(title, edition, price)values(?,?,?)");
+					pst.setString(1, bookName);
 					pst.setString(2, edition);
 					pst.setString(3, price);
 					pst.executeUpdate();
 					JOptionPane.showMessageDialog(null, "Record added!");
-//					table_load();
 					txtbname.setText("");
 					txtedition.setText("");
 					txtprice.setText("");
 					txtbname.requestFocus();
+					table_load();
 				}
 				catch (SQLException ex)
-				{}
+				{ex.printStackTrace();}
 				
 			}
 		});
