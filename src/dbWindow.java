@@ -256,6 +256,7 @@ public class dbWindow {
 					txtbname.setText("");
 					txtedition.setText("");
 					txtprice.setText("");
+					txtbid.setText("");
 					txtbname.requestFocus();
 					table_load();
 				}
@@ -287,6 +288,7 @@ public class dbWindow {
 					txtbname.setText("");
 					txtedition.setText("");
 					txtprice.setText("");
+					txtbid.setText("");
 					txtbname.requestFocus();
 					table_load();
 				}
