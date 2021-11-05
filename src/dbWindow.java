@@ -136,10 +136,25 @@ public class dbWindow {
 		panel.add(txtprice);
 		
 		JButton btnClear = new JButton("Clear");
+		btnClear.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				txtbname.setText("");
+				txtedition.setText("");
+				txtprice.setText("");
+				txtbid.setText("");
+				txtbname.requestFocus();
+			}
+		});
 		btnClear.setBounds(269, 245, 117, 29);
 		frame.getContentPane().add(btnClear);
 		
 		JButton btnExit = new JButton("Exit");
+		btnExit.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				System.exit(0);
+			}
+		});
 		btnExit.setBounds(153, 245, 117, 29);
 		frame.getContentPane().add(btnExit);
 		
