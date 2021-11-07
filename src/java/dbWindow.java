@@ -66,7 +66,7 @@ public class dbWindow {
 	public void Connect()
 		{
 			try {
-			 con = DriverManager.getConnection("jdbc:postgresql://ec2-34-236-88-129.compute-1.amazonaws.com/dp6bdvf5rq14s", "xyhbwvagrynqsl", "e163ed58d103bb95187598ba00cfe646739ae618acc669183073d352b890418f");
+			 con = DriverManager.getConnection("jdbc:postgresql://localhost:5432/JavaLibraryApp", "postgres", "112392");
 			} 
 			catch (SQLException ex)
 			{ex.printStackTrace();}
