@@ -66,7 +66,7 @@ public class dbWindow {
 	public void Connect()
 		{
 			try {
-			 con = DriverManager.getConnection("jdbc:mysql://localhost:8889/demo", "root", "root");
+			 con = DriverManager.getConnection("jdbc:postgresql://localhost:5432/JavaLibraryApp", "postgres", "112392");
 			} 
 			catch (SQLException ex)
 			{ex.printStackTrace();}
