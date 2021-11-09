@@ -66,7 +66,7 @@ public class dbWindow {
 	public void Connect()
 		{
 			try {
-			 con = DriverManager.getConnection("jdbc:postgresql://ec2-34-236-88-129.compute-1.amazonaws.com/dp6bdvf5rq14s", "xyhbwvagrynqsl", "e163ed58d103bb95187598ba00cfe646739ae618acc669183073d352b890418f");
+			 con = DriverManager.getConnection("jdbc:postgresql://localhost:5432/JavaLibraryApp", "postgres", "112392");
 			} 
 			catch (SQLException ex)
 			{ex.printStackTrace();}
@@ -214,10 +214,10 @@ public class dbWindow {
 			@Override
 			public void keyReleased(KeyEvent e) {
 				try {
-					String id = txtbid.getText();
+					int id = Integer.parseInt(txtbid.getText());
 					
 					pst = con.prepareStatement("select title, edition, price from books where id = ?");
-					pst.setString(1,  id);
+					pst.setInt(1,  id);
 					ResultSet rs = pst.executeQuery();
 					
 					if (rs.next() == true) 
@@ -252,19 +252,19 @@ public class dbWindow {
 				String bookName;
 				String edition; 
 				String price;
-				String bookId;
+				int id = Integer.parseInt(txtbid.getText());
 				
 				bookName = txtbname.getText();
 				edition = txtedition.getText();
 				price = txtprice.getText();
-				bookId = txtbid.getText();
+				
 				
 				try {
 					pst = con.prepareStatement("update books set title = ?, edition = ?, price = ? where id = ?");
 					pst.setString(1, bookName);
 					pst.setString(2, edition);
 					pst.setString(3, price);
-					pst.setString(4, bookId);
+					pst.setInt(4, id);
 					pst.executeUpdate();
 					
 					JOptionPane.showMessageDialog(null, "Record added!");
@@ -289,14 +289,14 @@ public class dbWindow {
 		btnDelete.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				String bookId;
+				int id = Integer.parseInt(txtbid.getText());
 				
-				bookId = txtbid.getText();
+				
 				
 				try {
 					pst = con.prepareStatement("delete from books where id = ?");
 					
-					pst.setString(1, bookId);
+					pst.setInt(1, id);
 					pst.executeUpdate();
 					
 					JOptionPane.showMessageDialog(null, "Record deleted!");
