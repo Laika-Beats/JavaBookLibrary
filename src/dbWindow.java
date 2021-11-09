@@ -313,5 +313,21 @@ public class dbWindow {
 		});
 		btnDelete.setBounds(391, 338, 70, 29);
 		frame.getContentPane().add(btnDelete);
+		
+		JLabel lblNewLabel_2 = new JLabel("ID");
+		lblNewLabel_2.setBounds(406, 63, 96, 16);
+		frame.getContentPane().add(lblNewLabel_2);
+		
+		JLabel lblNewLabel_2_1 = new JLabel("Book Name");
+		lblNewLabel_2_1.setBounds(522, 63, 96, 16);
+		frame.getContentPane().add(lblNewLabel_2_1);
+		
+		JLabel lblNewLabel_2_2 = new JLabel("Edition ");
+		lblNewLabel_2_2.setBounds(647, 63, 96, 16);
+		frame.getContentPane().add(lblNewLabel_2_2);
+		
+		JLabel lblNewLabel_2_3 = new JLabel("Price");
+		lblNewLabel_2_3.setBounds(777, 63, 96, 16);
+		frame.getContentPane().add(lblNewLabel_2_3);
 	}
 }
